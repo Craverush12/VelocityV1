@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Velocity</title>
+  <style>
+    body {
+      background-color: #000; /* Black background */
+      color: #00ff00; /* Green input text color */
+      font-family: 'system-ui'; /* Updated font style */
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      margin: 0;
+    }
+    header {
+      width: 100%;
+      text-align: center;
+      margin-bottom: 20px;
+    }
+    h1 {
+      font-size: 2.5rem;
+      font-weight: bold;
+      color: white; /* Ensure the header text is white */
+    }
+    main {
+      width: 100%;
+      max-width: 800px;
+      background-color: #333;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    label {
+      font-size: 1.25rem;
+      font-weight: medium;
+      text-align: center; /* Center-align the label text */
+      color: white; /* Change label text color to white */
+    }
+    textarea {
+      border: 1px solid #444;
+      border-radius: 8px;
+      padding: 15px;
+      background-color: #000; /* Black input and output boxes */
+      color: #00ff00; /* Green input text color */
+      font-size: 1rem;
+      width: 100%;
+      box-sizing: border-box;
+      resize: none;
+      height: 200px; /* 1/4 of the screen's height */
+    }
+    input[type="submit"] {
+      background-color: #007bff;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 20px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+    }
+    input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+    .output-container {
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+    .output-box {
+      flex: 1;
+    }
+    .output-box textarea {
+      height: 300px; /* Large output box */
+    }
+    .output-title {
+      color: #fff;
+      font-size: 1.5rem;
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Velocity</h1>
+  </header>
+  <main>
+    <form method="POST">
+      <label for="prompt">Enter your prompt or subject</label>
+      <textarea name="prompt" id="prompt"></textarea>
+      <input type="submit" value="Generate Prompt">
+    </form>
+    <div class="output-container">
+      {% if text_prompt %}
+      <div class="output-box">
+        <h2 class="output-title">Text-based Prompt:</h2>
+        <textarea readonly>{{ text_generated }}</textarea>
+      </div>
+      {% endif %}
+      {% if image_prompt %}
+      <div class="output-box">
+        <h2 class="output-title">Image-based Prompt:</h2>
+        <textarea readonly>{{ image_generated }}</textarea>
+      </div>
+      {% endif %}
+    </div>
+  </main>
+</body>
+</html>
